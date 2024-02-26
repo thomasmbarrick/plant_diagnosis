@@ -1,6 +1,7 @@
 import tensorflow as tsf
 import zipfile
 import os
+import shutil
 
 class preprocess():
     
@@ -12,7 +13,10 @@ class preprocess():
 
         #Unzipping
         with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
-            zip_ref.extractall(extracted_dir)
+            zip_ref.extractall(os.getcwd())
+
+        if os.path.exists(os.path.join(extracted_dir, "PlantVillage")):
+           shutil.rmtree(os.path.join(extracted_dir, "PlantVillage"))
 
         return extracted_dir
 
